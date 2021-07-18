@@ -9,7 +9,21 @@
 <body>
     <h1>Hello world</h1>
     <div id="app">
-        <h2>hell o wprd</h2>
+        <div v-if="showBook">
+            <p>{{title}}</p>
+            <p>{{author}}</p>
+            <p>{{age}}</p>
+        </div>
+      
+       <button v-on:click ="age++">add one more age</button>
+       <button v-on:click="author='zhiyong'">Change name</button>
+       <button v-on:click="changeTitle ('hello world') ">Change Title</button>
+       <button><span v-if="showBook">Hide books</span>
+        <span v-if="!showBook">show book</span>
+      <span>
+
+      </span></button>
+       <button v-on:click='hidebook'>hidebook</button>
     </div>
     <script src="app.js"></script>
 </body>
