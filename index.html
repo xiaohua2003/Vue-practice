@@ -4,26 +4,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+       body{
+           background:#eee;
+           max-width:960px;
+           margin:20px auto;
+       }
+       p,h3,ul{
+           margin:0;
+           padding:0;
+       }
+       li{
+           list-style-type:none;
+           background:#fff;
+           margin:20px auto;
+           padding:10px 20px;
+           border-radius:10px;
+           display:flex;
+           align-items:center;
+           justify-content:space-between;
+       }
+       li.fav{
+           background-color: rgb(0, 162, 255);
+           color:white;
+       }
+    </style>
     <title>Document</title>
 </head>
 <body>
     <h1>Hello world</h1>
     <div id="app">
+        <!--attribute binding-->
+        <a v-bind:href="url">Best website </a>
         <div v-if="showBook">
-            <p>{{title}}</p>
-            <p>{{author}}</p>
-            <p>{{age}}</p>
+            <ul>
+                <li v-for="book in books" :class="{fav: book.isFav}">
+                    <img :src="book.img" :alt="book.title">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
+            
         </div>
-      
-       <button v-on:click ="age++">add one more age</button>
-       <button v-on:click="author='zhiyong'">Change name</button>
-       <button v-on:click="changeTitle ('hello world') ">Change Title</button>
-       <button><span v-if="showBook">Hide books</span>
+       <button @click="toggleShowBooks"><span v-if="showBook">Hide books</span>
         <span v-if="!showBook">show book</span>
-      <span>
-
-      </span></button>
-       <button v-on:click='hidebook'>hidebook</button>
+       </button>
+       <br>
+       <div class="box" v-on:mouseover="handleEvent">mouseover(enter)</div>
+       <div class="box" @mouseleave="handleEvent">mouseleave</div>
+       <div class="box" @dblclick="handleEvent">double click</div>
+       <div class="box" @mousemove="handleMousemove">position - {{x}} {{y}}</div>
     </div>
     <script src="app.js"></script>
 </body>
